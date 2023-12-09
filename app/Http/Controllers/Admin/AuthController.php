@@ -11,6 +11,12 @@ class AuthController extends Controller
     {
         return view('admin.login.login');
     }
+
+    public function logout(){
+        session()->forget('admin');
+        return redirect()->route('admin.login');
+    }
+    
     public function loginPost(Request $request)
     {
         $checkUser = Admin::where('email',$request->get('email'))->first();
@@ -23,4 +29,3 @@ class AuthController extends Controller
         }
     }
 }
-

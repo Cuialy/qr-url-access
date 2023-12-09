@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Admin;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,11 @@ class AdminLoggedMiddleware
         if(!session()->has('admin')){
             return redirect()->route('admin.login');
         }
+        $adminCheck = Admin::where('hashed_id', session()->get('admin')->hashed_id)->first();
+        if(!$adminCheck){
+            return redirect()->route('admin.login');
+        }
+        $request->merge(['admin' => $adminCheck]);
         return $next($request);
     }
 }
