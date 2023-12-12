@@ -12,4 +12,6 @@ class Admin extends Model
     public function getFullNameAttribute(){
         return $this->name . ' ' . $this->surname;
     }
+
+     protected $fillable = ['name', 'surname', 'email', 'password','hashed_id'];
 }
