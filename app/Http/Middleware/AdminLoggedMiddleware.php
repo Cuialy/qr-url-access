@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Admin;
+use App\Repositories\AdminRepository;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +16,14 @@ class AdminLoggedMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!session()->has('admin')){
+        $adminRepository = new AdminRepository();
+        if(!$adminRepository->isLogged()){
+            $adminRepository->logout();
             return redirect()->route('admin.login');
         }
-        $adminCheck = Admin::where('hashed_id', session()->get('admin')->hashed_id)->first();
+        $adminCheck = $adminRepository->get(['hashed_id'=> session()->get('admin')->hashed_id])->first();
         if(!$adminCheck){
+            $adminRepository->logout();
             return redirect()->route('admin.login');
         }
         $request->merge(['admin' => $adminCheck]);

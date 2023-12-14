@@ -14,18 +14,22 @@ Route::group(['prefix'=>'/login','middleware'=>'admin.notLogged'],function(){
 
 
 Route::get("logout",[AuthController::class,"logout"])->name('admin.logout');
+Route::get("", function (){
+    return redirect()->route('admin.home');
+});
 
 Route::group(['middleware'=>'admin.logged'],function(){
-    Route::get("home",[HomeController::class,"home"])->name('admin.home');
+    Route::get("home",[HomeController::class,"index"])->name('admin.home');
 
-    Route::group(['prefix'=>'/admin'],function(){
-        Route::get("index",[AdminController::class,"index"])->name('admin.index');
-        
-        Route::get("",[AdminController::class,"getData"])->name('admin.getData');
-        Route::post("",[AdminController::class ,"createAdmin"])->name('admin.createAdmin');
-        Route::get("edit/{admin}",[AdminController::class,"adminEdit"])->name('admin.edit');
-        Route::post("update/{admin}",[AdminController::class,"adminUpdate"])->name('admin.update');
-        Route::get("delete/{admin}",[AdminController::class,"adminDelete"])->name('admin.delete');
+    Route::group(['prefix'=>'admins'],function(){
+        Route::get("",[AdminController::class,"index"])->name('admins.index');
+        Route::group(['prefix'=>'store'],function(){
+            Route::get("",[AdminController::class,"store"])->name('admin.store');
+            Route::post("",[AdminController::class,"save"])->name('admin.save');
+        });
+        Route::get("edit/{admin}",[AdminController::class,"edit"])->name('admin.edit');
+        Route::post("update/{admin}",[AdminController::class,"update"])->name('admin.update');
+        Route::get("delete/{admin}",[AdminController::class,"destroy"])->name('admin.destroy');
     });
 });
 

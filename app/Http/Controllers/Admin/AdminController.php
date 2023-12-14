@@ -2,11 +2,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\AdminRepository;
-use App\Http\Requests\AdminRequest;
+use App\Http\Requests\Admin\DestroyRequest;
+use App\Http\Requests\Admin\EditRequest;
+use App\Http\Requests\Admin\SaveRequest;
+use App\Http\Requests\Admin\IndexRequest;
+use App\Http\Requests\Admin\StoreRequest;
+use App\Http\Requests\Admin\UpdateRequest;
 use App\Models\Admin;
-
-use Illuminate\Http\Request;
+use App\Repositories\AdminRepository;
 
 class AdminController extends Controller
 {
@@ -15,48 +18,51 @@ class AdminController extends Controller
         $this->adminRepository=$adminRepository;
     }
 
-    public function index()
+    public function index(IndexRequest $request)
     {
-        return view('admin.admins.index');
+        $admins = $this->adminRepository->get([], true);
+        return view('admin.admins.index', compact('admins'));
     }
 
-    public function createAdmin(AdminRequest $request){
-        $new_admin = Admin::create([
-            'name'=>$request->input('name'),
-            'surname'=>$request->input('surname'),
-            'email'=>$request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'hashed_id' => md5('email')
+    public function store(StoreRequest $request)
+    {
+        return view('admin.admins.form');
+    }
+
+    public function save(SaveRequest $request){
+        $this->adminRepository->store([
+            'name'=>$request->get('name'),
+            'surname'=>$request->get('surname'),
+            'email'=>$request->get('email'),
+            'password' => \Hash::make($request->get('password')),
+            'hashed_id' => md5($request->get('email').time().rand(0,1000)),
         ]);
-        return redirect(route('admin.index'));
-    }
-    
-    public function getData()
-    {
-        $admins=$this->adminRepository->getData();
-        return view('admin.admins.admins',['admins'=>$admins]);
+        return redirect()->route('admins.index')->with($this->sendAlert('success','Success','Admin added successfully'));
     }
 
-    public function adminEdit(Admin $admin)
+
+    public function edit(EditRequest $request, Admin $admin)
     {
-        return view('admin.admins.editForm',['admin'=>$admin]);
+        return view('admin.admins.form', compact('admin'));
     }
 
-    public function adminDelete(Admin $admin)
+    public function destroy(DestroyRequest $request, Admin $admin)
     {
-        $this->adminRepository->delete($admin);
-        return redirect(route('admin.getData'));
+        $this->adminRepository->destroy($admin);
+        return redirect()->route('admins.index')->with($this->sendAlert('success','Success','Admin added successfully'));
     }
 
-    public function adminUpdate(Request $request,Admin $admin)
+    public function update(UpdateRequest $request,Admin $admin)
     {
         $data=[
             'name'=>$request->get('name'),
             'surname'=>$request->get('surname'),
             'email'=>$request->get('email'),
-            'password' => bcrypt($request->input('password')),
         ];
-        $adminUpdate=$this->adminRepository->update($data,$admin);
-        return redirect(route('admin.getData'));
+        if ($request->get('password')){
+            $data['password'] = \Hash::make($request->get('password'));
+        }
+       $this->adminRepository->update($data,$admin);
+        return redirect()->route('admins.index')->with($this->sendAlert('success','Success','Admin updated successfully'));
     }
 }

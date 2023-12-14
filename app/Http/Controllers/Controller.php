@@ -9,4 +9,13 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    public function sendAlert($type, $title, $text)
+    {
+        return ['alert' => [
+            'type' => $type,
+            'title' => $title,
+            'text' => $text
+        ]];
+    }
 }

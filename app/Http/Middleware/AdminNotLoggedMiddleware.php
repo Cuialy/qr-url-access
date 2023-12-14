@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Repositories\AdminRepository;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +16,7 @@ class AdminNotLoggedMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $currentUser=session()->has('admin');
-        if($currentUser){
+        if((new AdminRepository())->isLogged()){
             return redirect()->route('admin.home');
         }
         return $next($request);
