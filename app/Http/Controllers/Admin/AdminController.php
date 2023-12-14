@@ -1,0 +1,68 @@
+<?php
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DestroyRequest;
+use App\Http\Requests\Admin\EditRequest;
+use App\Http\Requests\Admin\SaveRequest;
+use App\Http\Requests\Admin\IndexRequest;
+use App\Http\Requests\Admin\StoreRequest;
+use App\Http\Requests\Admin\UpdateRequest;
+use App\Models\Admin;
+use App\Repositories\AdminRepository;
+
+class AdminController extends Controller
+{
+    public function __construct(private AdminRepository $adminRepository)
+    {
+        $this->adminRepository=$adminRepository;
+    }
+
+    public function index(IndexRequest $request)
+    {
+        $admins = $this->adminRepository->get([], true);
+        return view('admin.admins.index', compact('admins'));
+    }
+
+    public function store(StoreRequest $request)
+    {
+        return view('admin.admins.form');
+    }
+
+    public function save(SaveRequest $request){
+        $this->adminRepository->store([
+            'name'=>$request->get('name'),
+            'surname'=>$request->get('surname'),
+            'email'=>$request->get('email'),
+            'password' => \Hash::make($request->get('password')),
+            'hashed_id' => md5($request->get('email').time().rand(0,1000)),
+        ]);
+        return redirect()->route('admins.index')->with($this->sendAlert('success','Success','Admin added successfully'));
+    }
+
+
+    public function edit(EditRequest $request, Admin $admin)
+    {
+        return view('admin.admins.form', compact('admin'));
+    }
+
+    public function destroy(DestroyRequest $request, Admin $admin)
+    {
+        $this->adminRepository->destroy($admin);
+        return redirect()->route('admins.index')->with($this->sendAlert('success','Success','Admin added successfully'));
+    }
+
+    public function update(UpdateRequest $request,Admin $admin)
+    {
+        $data=[
+            'name'=>$request->get('name'),
+            'surname'=>$request->get('surname'),
+            'email'=>$request->get('email'),
+        ];
+        if ($request->get('password')){
+            $data['password'] = \Hash::make($request->get('password'));
+        }
+       $this->adminRepository->update($data,$admin);
+        return redirect()->route('admins.index')->with($this->sendAlert('success','Success','Admin updated successfully'));
+    }
+}
