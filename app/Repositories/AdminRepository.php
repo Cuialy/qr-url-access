@@ -30,6 +30,9 @@ class AdminRepository
         if (isset($data['surname'])) {
             $admins->where('surname', $data['surname']);
         }
+        if (isset($data['hashed_id'])) {
+            $admins->where('hashed_id', $data['hashed_id']);
+        }
 
         return $paginate ? $admins->paginate(10) : $admins->get();
     }
@@ -48,5 +51,4 @@ class AdminRepository
     {
         $admin->delete();
     }
-
 }
