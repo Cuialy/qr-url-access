@@ -95,13 +95,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a href="pages/kanban.html" class="nav-link">
+                        <a class="nav-link">
                             <i class="nav-icon fas fa-link"></i>
                             <p>
                                 Links
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('links.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Links</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('link.store')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create New Link</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="pages/kanban.html" class="nav-link">
