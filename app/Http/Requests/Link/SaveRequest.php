@@ -15,7 +15,7 @@ class SaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'old_url' => 'required',
+            'old_url' => 'required|active_url',
         ];
     }
 }

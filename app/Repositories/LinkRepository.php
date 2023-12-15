@@ -20,7 +20,7 @@ class LinkRepository
             $links->where('new_url', $data['new_url']);
         }
         $links->orderBy($orderBy, $order);
-        return $paginate ? $links->paginate(2) : $links->get();
+        return $paginate ? $links->paginate(10) : $links->get();
     }
 
     public function generateRandomCode($code = null): string

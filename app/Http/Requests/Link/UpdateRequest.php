@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'old_url' => 'required',
+            'old_url' => 'required|active_url',
             'new_url' => 'nullable|string',
         ];
     }
