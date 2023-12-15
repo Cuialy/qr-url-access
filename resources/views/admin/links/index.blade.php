@@ -38,15 +38,13 @@
                                         <td>
                                             <a href="{{route('link.edit',$link)}}"
                                                class="btn btn-primary">Edit</a>
-                                            @if($link->id != request()->get('admin')->id)
                                                 <a href="javascript:void(0)" title="Delete" onclick="modalAskQuestion({
                                                         title: 'Are you sure?',
-                                                        text: 'Do you want to delete this admin?',
+                                                        text: 'Do you want to delete this link?',
                                                         icon: 'warning',
                                                         route: '{{ route('link.destroy', $link) }}',
                                                         })"
                                                    class="btn btn-danger">Delete</a>
-                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

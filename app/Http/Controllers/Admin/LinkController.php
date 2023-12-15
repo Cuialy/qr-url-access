@@ -47,10 +47,10 @@ class LinkController extends Controller
         $this->linkRepository->store([
             'user_id'=>session()->get('admin')->id,
             'old_url'=>$request->get('old_url'),
-            'new_url' => $newUrl,
+            'new_url' => strtoupper($newUrl),
             'hashed_id' => md5($request->get('email').time().rand(0,1000)),
         ]);
-        return redirect()->route('links.index')->with($this->sendAlert('success','Success','Admin added successfully'));
+        return redirect()->route('links.index')->with($this->sendAlert('success','Success','Link added successfully'));
     }
 
     
@@ -68,7 +68,7 @@ class LinkController extends Controller
                 $newUrl = $this->generateRandomCode();
             }
 
-            $data['new_url'] = $newUrl;
+            $data['new_url'] =strtoupper($newUrl);
         }
         $link->update($data);
         return redirect()->route('links.index')->with($this->sendAlert('success', 'Success', 'Link updated successfully'));
@@ -82,6 +82,6 @@ class LinkController extends Controller
     public function destroy(DestroyRequest $request,Link $link)
     {
         $this->linkRepository->destroy($link);
-        return redirect()->route('links.index')->with($this->sendAlert('success','Success','Admin added successfully'));
+        return redirect()->route('links.index')->with($this->sendAlert('success','Success','Link delete successfully'));
     }
 }
