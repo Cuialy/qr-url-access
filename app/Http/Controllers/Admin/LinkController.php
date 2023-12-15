@@ -54,25 +54,26 @@ class LinkController extends Controller
     }
 
     
-    public function update(UpdateRequest $request, Link $link)
-    {   
-        $data = [
-            'old_url' => $request->get('old_url'),
-        ];
+   public function update(UpdateRequest $request, Link $link)
+{   
+    $data = [
+        'old_url' => $request->get('old_url'),
+    ];
 
-        if ($request->has('new_url')) {
-            $newUrl = $request->get('new_url');
-            $isset = Link::where('new_url', $newUrl)->where('id', $link->id)->first();
-
-            if ($isset) {
-                $newUrl = $this->generateRandomCode();
-            }
-
-            $data['new_url'] =strtoupper($newUrl);
+    if ($request->has('new_url')) {
+        $newUrl = $request->get('new_url');
+        $isset = Link::where('old_url', $newUrl)->where('id', $link->id)->first();
+        if ($isset) {
+            $newUrl = $this->generateRandomCode();
         }
-        $link->update($data);
-        return redirect()->route('links.index')->with($this->sendAlert('success', 'Success', 'Link updated successfully'));
+
+        $data['new_url'] = strtoupper($newUrl);
     }
+
+    $link->update($data);
+    return redirect()->route('links.index')->with($this->sendAlert('success', 'Success', 'Link updated successfully'));
+}
+
 
     public function edit(EditRequest $request,Link $link)
     {
