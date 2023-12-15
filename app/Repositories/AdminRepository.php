@@ -17,7 +17,7 @@ class AdminRepository
         session()->forget('admin');
     }
 
-    public function get($data = [], $paginate = false): mixed
+    public function get($data = [], $paginate = false, $orderBy = 'id', $order = 'desc'): array|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection
     {
         $admins = Admin::query();
 
@@ -33,6 +33,8 @@ class AdminRepository
         if (isset($data['hashed_id'])) {
             $admins->where('hashed_id', $data['hashed_id']);
         }
+
+        $admins->orderBy($orderBy, $order);
 
         return $paginate ? $admins->paginate(10) : $admins->get();
     }
