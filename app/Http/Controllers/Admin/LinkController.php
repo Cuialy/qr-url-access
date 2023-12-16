@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +9,6 @@ use App\Http\Requests\Link\IndexRequest;
 use App\Http\Requests\Link\StoreRequest;
 use App\Http\Requests\Link\UpdateRequest;
 use App\Models\Link;
-
 use App\Repositories\LinkRepository;
 
 class LinkController extends Controller
@@ -36,7 +34,6 @@ class LinkController extends Controller
         $this->linkRepository->store([
             'old_url' => $request->get('old_url'),
             'new_url' => $this->linkRepository->generateRandomCode(),
-            'hashed_id' => md5($request->get('old_url') . time() . rand(0, 1000)),
         ]);
         return redirect()->route('links.index')->with($this->sendAlert('success', 'Success', 'Link added successfully'));
     }
@@ -46,13 +43,10 @@ class LinkController extends Controller
     {
         $data = [
             'old_url' => $request->get('old_url'),
+            'new_url' => $request->get('new_url'),
         ];
 
-        if ($request->get('new_url') != $link->new_url) {
-            $data['new_url'] = $this->linkRepository->generateRandomCode($request->get('new_url'));
-        }
-
-        $link->update($data);
+        $this->linkRepository->update($data, $link);
         return redirect()->route('links.index')->with($this->sendAlert('success', 'Success', 'Link updated successfully'));
     }
 

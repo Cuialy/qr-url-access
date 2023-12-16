@@ -10,7 +10,13 @@ class Admin extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($admin) {
+            $admin->hashed_id = md5(time().rand());
+        });
+    }
     public function getFullNameAttribute(){
         return $this->name . ' ' . $this->surname;
     }

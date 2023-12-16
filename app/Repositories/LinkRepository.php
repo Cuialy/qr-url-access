@@ -34,14 +34,19 @@ class LinkRepository
         return strtoupper($code ?? $random);
     }
 
-
     public function store(array $data)
     {
+        if (Link::where('new_url', $data['new_url'])->exists()) {
+            $data['new_url'] = $this->generateRandomCode();
+        }
         return Link::create($data);
     }
 
     public function update(array $data, Link $link)
     {
+        if (Link::where('new_url', $data['new_url'])->where('id', '!=', $link->id)->exists()) {
+            $data['new_url'] = $this->generateRandomCode();
+        }
         return $link->update($data);
     }
 
