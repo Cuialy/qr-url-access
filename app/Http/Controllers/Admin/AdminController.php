@@ -35,7 +35,6 @@ class AdminController extends Controller
             'surname'=>$request->get('surname'),
             'email'=>$request->get('email'),
             'password' => \Hash::make($request->get('password')),
-            'hashed_id' => md5($request->get('email').time().rand(0,1000)),
         ]);
         return redirect()->route('admins.index')->with($this->sendAlert('success','Success','Admin added successfully'));
     }

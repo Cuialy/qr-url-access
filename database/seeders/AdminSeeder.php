@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Repositories\AdminRepository;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,12 +14,14 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::create([
-            'name' => 'Admin',
-            'surname' => 'Test',
-            'email' => 'admin@admin.com',
-            'password' => \Hash::make('admin'),
-            'hashed_id' => md5(time()),
-        ]);
+        $adminRepository = new AdminRepository();
+        if (!$adminRepository->get(['email' => 'admin@admin.com'])->first()) {
+            $adminRepository->store([
+                'name' => 'Admin',
+                'surname' => 'Test',
+                'email' => 'admin@admin.com',
+                'password' => \Hash::make('admin'),
+            ]);
+        }
     }
 }

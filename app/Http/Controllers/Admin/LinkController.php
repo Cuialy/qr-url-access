@@ -34,7 +34,6 @@ class LinkController extends Controller
         $this->linkRepository->store([
             'old_url' => $request->get('old_url'),
             'new_url' => $this->linkRepository->generateRandomCode(),
-            'hashed_id' => md5($request->get('old_url') . time() . rand(0, 1000)),
         ]);
         return redirect()->route('links.index')->with($this->sendAlert('success', 'Success', 'Link added successfully'));
     }
