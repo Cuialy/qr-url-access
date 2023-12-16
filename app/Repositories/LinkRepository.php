@@ -36,7 +36,7 @@ class LinkRepository
 
     public function store(array $data)
     {
-        if (Link::where('new_url', $data['new_url'])->exists()) {
+        if (!isset($data['new_url']) || $data['new_url'] == null || $data['new_url'] == '' || Link::where('new_url', $data['new_url'])->exists()) {
             $data['new_url'] = $this->generateRandomCode();
         }
         return Link::create($data);

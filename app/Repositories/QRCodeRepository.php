@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\QRCode;
+
 class QRCodeRepository
 {
     public function get($data = [], $paginate = true, $orderBy = 'id', $order = 'desc'): array|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection
@@ -21,19 +22,27 @@ class QRCodeRepository
         $links->orderBy($orderBy, $order);
         return $paginate ? $links->paginate(10) : $links->get();
     }
-    public function createQRCode($data){
+
+    public function createQRCode($data): string
+    {
         try {
+            if (filter_var($data, FILTER_VALIDATE_URL)) {
+                $data = route('redirect', (new LinkRepository())->store([
+                    'old_url' => $data,
+                ])->new_url);
+            }
             $path = 'app/public/qr-codes';
-            $hashed_id = md5($data.time());
+            $hashed_id = md5($data . time());
             if (!file_exists(storage_path($path))) {
                 mkdir(storage_path($path), 0777, true);
             }
-            \SimpleSoftwareIO\QrCode\Facades\QrCode::generate($data, storage_path($path.'/'. $hashed_id.'.svg'));
-            return url('storage/qr-codes/'. $hashed_id.'.svg');
+            \SimpleSoftwareIO\QrCode\Facades\QrCode::generate($data, storage_path($path . '/' . $hashed_id . '.svg'));
+            return url('storage/qr-codes/' . $hashed_id . '.svg');
         } catch (\Throwable $th) {
             return false;
         }
     }
+
     public function store(array $data)
     {
         return QRCode::create($data);
