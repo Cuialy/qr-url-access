@@ -22,14 +22,19 @@ class SettingRepository
         }
         return $paginate ? $settings->paginate(10) : $settings->get();
     }
+
     public function store(array $data)
     {
         return Setting::create($data);
     }
+
+
     public function update(array $data,Setting $setting)
     {
+
         return $setting->update($data);
     }
+
     public function destroy(Setting $setting)
     {
         $setting->delete();
