@@ -32,7 +32,7 @@ class QRCodeController extends Controller
 
     public function save(SaveRequest $request)
     {
-        $qrCode = $this->QRCodeRepository->createQRCode('umut can arda');
+        $qrCode = $this->QRCodeRepository->createQRCode($request->get('content'));
         if (!$qrCode) {
             return redirect()->route('qr-codes.index')->with($this->sendAlert('error', 'Error', 'QR Code not created'));
         }
