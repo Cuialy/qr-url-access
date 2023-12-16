@@ -30,11 +30,14 @@ class SettingController extends Controller
     }
     public function save(SaveRequest $request)
     {
-        $this->settingRepository->store([
+        $setting = $this->settingRepository->store([
             'key'=>$request->get('key'),
             'value'=>$request->get('value'),
             'hashed_id'=>md5($request->get('key').time().rand(0,1000)),
         ]);
+        if (!$setting){
+            return redirect()->back()->with($this->sendAlert('danger', 'Error', 'Setting key already exists'));
+        }
         return redirect()->route('settings.index')->with($this->sendAlert('success', 'Success', 'Setting added successfully'));
 
     }

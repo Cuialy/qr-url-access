@@ -25,6 +25,9 @@ class SettingRepository
 
     public function store(array $data)
     {
+        if (Setting::where('key',$data['key'])->exists()){
+            return false;
+        }
         return Setting::create($data);
     }
 
