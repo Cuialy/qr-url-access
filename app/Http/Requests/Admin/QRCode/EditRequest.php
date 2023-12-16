@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Requests\Setting;
+
+namespace App\Http\Requests\Admin\QRCode;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
@@ -10,6 +11,7 @@ class EditRequest extends FormRequest
     {
         return (new AdminRepository())->isLogged();
     }
+
     public function rules()
     {
         return [];

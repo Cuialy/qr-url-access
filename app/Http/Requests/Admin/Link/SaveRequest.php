@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\Link;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class SaveRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,6 +14,8 @@ class StoreRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'old_url' => 'required|active_url',
+        ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
-namespace App\Http\Requests\Setting;
+namespace App\Http\Requests\Admin\Link;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class EditRequest extends FormRequest
 {
     public function authorize()
     {

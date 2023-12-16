@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\QRCode;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;

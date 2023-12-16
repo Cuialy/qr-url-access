@@ -1,10 +1,10 @@
 <?php
-namespace App\Http\Requests\Setting;
+namespace App\Http\Requests\Admin\Setting;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveRequest extends FormRequest
+class EditRequest extends FormRequest
 {
     public function authorize()
     {
@@ -12,9 +12,6 @@ class SaveRequest extends FormRequest
     }
     public function rules()
     {
-        return [
-            'key'=>'required',
-            'value'=>'required'
-        ];
+        return [];
     }
 }

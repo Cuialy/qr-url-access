@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('qr_codes', function (Blueprint $table) {
             $table->id();
+            $table->string('content');
+            $table->string('path');
             $table->string('hashed_id');
-            $table->string('qr_image_path');
-            $table->string('qr_image_url_link');
-            $table->string('user_id');
             $table->timestamps();
         });
     }

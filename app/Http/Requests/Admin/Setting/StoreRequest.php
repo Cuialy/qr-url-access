@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Http\Requests\Link;
+namespace App\Http\Requests\Admin\Setting;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,7 +10,6 @@ class StoreRequest extends FormRequest
     {
         return (new AdminRepository())->isLogged();
     }
-
     public function rules()
     {
         return [];

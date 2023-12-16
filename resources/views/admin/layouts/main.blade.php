@@ -88,13 +88,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
 
                     <li class="nav-item">
-                        <a href="pages/kanban.html" class="nav-link">
+                        <a class="nav-link">
                             <i class="nav-icon fas fa-qrcode"></i>
                             <p>
-                                QR KOD
+                                QR Codes
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('qr-codes.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All QR Codes</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('qr-code.store')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create New QR Code</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link">

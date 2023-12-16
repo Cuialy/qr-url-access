@@ -1,21 +1,17 @@
 <?php
-
-namespace App\Http\Requests\Link;
+namespace App\Http\Requests\Admin\Link;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveRequest extends FormRequest
+class DestroyRequest extends FormRequest
 {
     public function authorize()
     {
         return (new AdminRepository())->isLogged();
     }
-
     public function rules()
     {
-        return [
-            'old_url' => 'required|active_url',
-        ];
+        return [];
     }
 }

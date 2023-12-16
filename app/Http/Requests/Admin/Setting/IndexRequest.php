@@ -1,10 +1,10 @@
 <?php
-namespace App\Http\Requests\Link;
+namespace App\Http\Requests\Admin\Setting;
 
 use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class IndexRequest extends FormRequest
 {
     public function authorize()
     {
@@ -12,9 +12,6 @@ class UpdateRequest extends FormRequest
     }
     public function rules()
     {
-        return [
-            'old_url' => 'required|active_url',
-            'new_url' => 'nullable|string',
-        ];
+        return [];
     }
 }

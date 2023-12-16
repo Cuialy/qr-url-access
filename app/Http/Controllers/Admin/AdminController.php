@@ -2,12 +2,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\DestroyRequest;
-use App\Http\Requests\Admin\EditRequest;
-use App\Http\Requests\Admin\SaveRequest;
-use App\Http\Requests\Admin\IndexRequest;
-use App\Http\Requests\Admin\StoreRequest;
-use App\Http\Requests\Admin\UpdateRequest;
+use App\Http\Requests\Admin\Admin\DestroyRequest;
+use App\Http\Requests\Admin\Admin\EditRequest;
+use App\Http\Requests\Admin\Admin\IndexRequest;
+use App\Http\Requests\Admin\Admin\SaveRequest;
+use App\Http\Requests\Admin\Admin\StoreRequest;
+use App\Http\Requests\Admin\Admin\UpdateRequest;
 use App\Models\Admin;
 use App\Repositories\AdminRepository;
 
