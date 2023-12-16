@@ -18,7 +18,6 @@
                         <button style="width: 100%" type="submit" class="btn btn-primary">Add QR Code</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

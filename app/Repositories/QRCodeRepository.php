@@ -29,7 +29,7 @@ class QRCodeRepository
                 mkdir(storage_path($path), 0777, true);
             }
             \SimpleSoftwareIO\QrCode\Facades\QrCode::generate($data, storage_path($path.'/'. $hashed_id.'.svg'));
-            return url('qr-codes/'. $hashed_id.'.svg');
+            return url('storage/qr-codes/'. $hashed_id.'.svg');
         } catch (\Throwable $th) {
             return false;
         }
