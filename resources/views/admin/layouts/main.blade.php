@@ -119,13 +119,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
+
                     <li class="nav-item">
-                        <a href="pages/kanban.html" class="nav-link">
+                        <a class="nav-link">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
                                 Settings
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('settings.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Settings</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('setting.store')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create New Setting</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="{{route('admin.logout')}}" class="nav-link bg-danger text-white">Logout</a>

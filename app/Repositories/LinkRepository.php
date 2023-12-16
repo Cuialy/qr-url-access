@@ -34,7 +34,6 @@ class LinkRepository
         return strtoupper($code ?? $random);
     }
 
-
     public function store(array $data)
     {
         return Link::create($data);

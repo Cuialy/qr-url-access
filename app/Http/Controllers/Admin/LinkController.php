@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +9,6 @@ use App\Http\Requests\Link\IndexRequest;
 use App\Http\Requests\Link\StoreRequest;
 use App\Http\Requests\Link\UpdateRequest;
 use App\Models\Link;
-
 use App\Repositories\LinkRepository;
 
 class LinkController extends Controller
