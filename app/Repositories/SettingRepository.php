@@ -17,6 +17,9 @@ class SettingRepository
         if (isset($data['value'])){
             $settings->where('value',$data['value']);
         }
+        if (isset($data['hashed_id'])){
+            $settings->where('hashed_id',$data['hashed_id']);
+        }
         return $paginate ? $settings->paginate(10) : $settings->get();
     }
     public function store(array $data)
