@@ -44,13 +44,10 @@ class LinkController extends Controller
     {
         $data = [
             'old_url' => $request->get('old_url'),
+            'new_url' => $request->get('new_url'),
         ];
 
-        if ($request->get('new_url') != $link->new_url) {
-            $data['new_url'] = $this->linkRepository->generateRandomCode($request->get('new_url'));
-        }
-
-        $link->update($data);
+        $this->linkRepository->update($data, $link);
         return redirect()->route('links.index')->with($this->sendAlert('success', 'Success', 'Link updated successfully'));
     }
 

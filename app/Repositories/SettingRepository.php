@@ -34,7 +34,9 @@ class SettingRepository
 
     public function update(array $data,Setting $setting)
     {
-
+        if (Setting::where('key',$data['key'])->where('id','!=',$setting->id)->exists()){
+            return false;
+        }
         return $setting->update($data);
     }
 

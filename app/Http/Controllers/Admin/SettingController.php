@@ -51,7 +51,10 @@ class SettingController extends Controller
             'key'=>$request->get('key'),
             'value'=>$request->get('value')
         ];
-        $setting->update($data);
+        $setting = $this->settingRepository->update($data,$setting);
+        if (!$setting){
+            return redirect()->back()->with($this->sendAlert('danger', 'Error', 'Setting key already exists'));
+        }
         return redirect()->route('settings.index')->with($this->sendAlert('success', 'Success', 'Setting updated successfully'));
     }
     public function destroy(DestroyRequest $request,Setting $setting)
