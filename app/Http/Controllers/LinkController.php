@@ -17,18 +17,18 @@ class LinkController extends Controller
     public function generate(LinkGenerateRequest $request)
     {
         $lastUrl = '';
-        $isOutUrl = false;
+        $isOurUrl = false;
         $type = $request->get('type');
         $data = $request->get('data');
         if ($type == 'url') {
             $lastUrl = $data['url'];
-            $isOutUrl = true;
+            $isOurUrl = true;
         } elseif ($type == 'phone') {
             $lastUrl = 'tel:' . $data['phone'];
-            $isOutUrl = true;
+            $isOurUrl = true;
         } elseif ($type == 'email') {
             $lastUrl = 'mailto:' . $data['email'] . '?subject=' . $data['subject'] . '&body=' . $data['message'];
-            $isOutUrl = true;
+            $isOurUrl = true;
         } elseif ($type == 'sms') {
             $lastUrl = 'SMSTO:' . $data['phone'] . ':' . $data['message'];
         } elseif ($type == 'vcard') {
@@ -53,10 +53,10 @@ END:VCARD';
             $lastUrl = 'WIFI:T:'.($data['encryption'] ?? '').';S:'.($data['ssid'] ?? '').';P:'.($data['password'] ?? '').';H:;;';
         } elseif ($type == 'whatsapp') {
             $lastUrl = 'https://api.whatsapp.com/send?phone=' . $data['phone'] . '&text=' . $data['message'];
-            $isOutUrl = true;
+            $isOurUrl = true;
         }
 
-        if ($isOutUrl){
+        if ($isOurUrl){
             $shortLink = (new LinkRepository())->store([
                 'old_url' => $lastUrl
             ]);
@@ -82,7 +82,8 @@ END:VCARD';
             'status' => 'success',
             'data' => [
                 'qr_code' => $qrCode,
-                'short_link' => $isOutUrl ? $qrCodeUrl : $lastUrl,
+                'short_link' => $isOurUrl ? $qrCodeUrl : $lastUrl,
+                'is_our_url' => $isOurUrl ? 1 : 0,
             ]
         ]);
     }

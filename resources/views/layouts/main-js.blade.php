@@ -67,6 +67,11 @@
                     text: 'Short URL & QR Code Generated Successfully.',
                     icon: 'success'
                 });
+                if(response.data.is_our_url == 0) {
+                    $('#short_url_panel').hide();
+                }else{
+                    $('#short_url_panel').show();
+                }
                 const qrCodeImage = $('#qr_image');
                 const qrButton = $('#qr_button');
                 const linkInput = $('#link_input');

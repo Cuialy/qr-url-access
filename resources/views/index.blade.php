@@ -349,7 +349,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
+                                    <div id="short_url_panel" class="row">
                                         <div class="col-12">
                                             <h4>Short URL</h4>
                                             <input class="form-control" id="link_input" disabled type="text" value="https://qrlinkportal.com/q/ABCD">

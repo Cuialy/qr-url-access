@@ -9,10 +9,7 @@
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ route('web.link') }}" class="nav-link @if(request()->routeIs('web.link')) active @endif">Shorter URL</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('web.qr-code') }}" class="nav-link @if(request()->routeIs('web.qr-code')) active @endif">QR Code Generator</a>
+                    <a href="{{ route('web.link') }}" class="nav-link @if(request()->routeIs('web.link')) active @endif">URL Shorter & QR Code Generator</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle @if(request()->routeIs('web.about-project') || request()->routeIs('web.about-us')) active @endif">Others</a>
