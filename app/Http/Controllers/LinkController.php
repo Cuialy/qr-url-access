@@ -32,7 +32,21 @@ class LinkController extends Controller
         } elseif ($type == 'sms') {
             $lastUrl = 'SMSTO:' . $data['phone'] . ':' . $data['message'];
         } elseif ($type == 'vcard') {
-            $lastUrl = 'BEGIN:VCARDVERSION:'.($data['version'] ?? '3.0').'N:'.($data['lastname'] ?? '').';'.($data['firstname'] ?? '').'FN:'.($data['firstname'] ?? '').' '.($data['lastname'] ?? '').'TITLE:'.($data['position_work'] ?? '').'ORG:'.($data['organization'] ?? '').'URL:'.($data['website'] ?? '').'EMAIL;TYPE=INTERNET:'.($data['email'] ?? '').'TEL;TYPE=voice,work,pref:'.($data['phone_work'] ?? '').'TEL;TYPE=voice,home,pref:'.($data['phone_private'] ?? '').'TEL;TYPE=voice,cell,pref:'.($data['phone_mobile'] ?? '').'TEL;TYPE=fax,work,pref:'.($data['fax_work'] ?? '').'TEL;TYPE=fax,home,pref:'.($data['fax_private'] ?? '').'ADR:;;'.($data['street'] ?? '').';'.($data['city'] ?? '').';'.($data['state'] ?? '').';'.($data['zipcode'] ?? '').';'.($data['country'] ?? '').'END:VCARD';
+            $lastUrl = 'BEGIN:VCARD
+VERSION:'.($data['version'] ?? '3.0').'
+N:'.($data['lastname'] ?? '').';'.($data['firstname'] ?? '').'
+FN:'.($data['firstname'] ?? '').' '.($data['lastname'] ?? '').'
+TITLE:'.($data['position_work'] ?? '').'
+ORG:'.($data['organization'] ?? ''). '
+URL:'.($data['website'] ?? '').'
+EMAIL;TYPE=INTERNET:'.($data['email'] ?? '').'
+TEL;TYPE=voice,work,pref:'.($data['phone_work'] ?? '').'
+TEL;TYPE=voice,home,pref:'.($data['phone_private'] ?? '').'
+TEL;TYPE=voice,cell,pref:'.($data['phone_mobile'] ?? '').'
+TEL;TYPE=fax,work,pref:'.($data['fax_work'] ?? '').'
+TEL;TYPE=fax,home,pref:'.($data['fax_private'] ?? '').'
+ADR:;;'.($data['street'] ?? '').';'.($data['city'] ?? '').';'.($data['state'] ?? '').';'.($data['zipcode'] ?? '').';'.($data['country'] ?? '').'
+END:VCARD';
         } elseif ($type == 'mecard') {
             $lastUrl = 'MECARD:N:'.($data['lastname'] ?? '').','.($data['firstname'] ?? '').';NICKNAME:'.($data['nickname'] ?? '').';TEL:'.($data['phone_1'] ?? '').';TEL:'.($data['phone_2'] ?? '').';TEL:'.($data['phone_3'] ?? '').';EMAIL:'.($data['email'] ?? '').';BDAY:'.(isset($data['birthday']) ? str_replace('-','',$data['birthday']) : '').';NOTE:'.($data['notes'] ?? '').';ADR:,,'.($data['street'] ?? '').','.($data['city'] ?? '').','.($data['state'] ?? '').','.($data['zipcode'] ?? '').','.($data['country'] ?? '').';;';
         } elseif ($type == 'wifi') {
@@ -50,7 +64,6 @@ class LinkController extends Controller
         }else{
             $qrCodeUrl = $lastUrl;
         }
-
 
         $qrCodeRepository = new QRCodeRepository();
         $qrCode = $qrCodeRepository->createQRCode($qrCodeUrl, false);

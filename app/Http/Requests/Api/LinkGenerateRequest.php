@@ -55,14 +55,7 @@ class LinkGenerateRequest extends FormRequest
             $rules['data.fax_work'] = 'nullable|numeric';
             $rules['data.fax_private'] = 'nullable|numeric';
             $rules['data.email'] = 'nullable|email';
-            if ($this->has('data.website')){
-                if (!preg_match("~^(?:f|ht)tps?://~i", $data['website'])) {
-                    $requests = $this->all();
-                    $requests['data']['website'] = 'http://' . $data['website'];
-                    $this->merge($requests);
-                }
-            }
-            $rules['data.website'] = 'nullable|active_url';
+            $rules['data.website'] = 'nullable|max:155';
             $rules['data.street'] = 'nullable|max:155';
             $rules['data.zipcode'] = 'nullable|numeric';
             $rules['data.city'] = 'nullable|max:155';
@@ -79,14 +72,7 @@ class LinkGenerateRequest extends FormRequest
             $rules['data.phone_2'] = 'nullable|numeric';
             $rules['data.phone_3'] = 'nullable|numeric';
             $rules['data.email'] = 'nullable|email';
-            if ($this->has('data.website')){
-                if (!preg_match("~^(?:f|ht)tps?://~i", $data['website'])) {
-                    $requests = $this->all();
-                    $requests['data']['website'] = 'http://' . $data['website'];
-                    $this->merge($requests);
-                }
-            }
-            $rules['data.website'] = 'nullable|active_url';
+            $rules['data.website'] = 'nullable|max:155';
             $rules['data.birthday'] = 'nullable|date';
             $rules['data.street'] = 'nullable|max:155';
             $rules['data.zipcode'] = 'nullable|numeric';
