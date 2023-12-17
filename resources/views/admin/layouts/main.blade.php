@@ -42,9 +42,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="{{route('admin.home')}}" class="brand-link">
-            <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
+            <img src="{{asset('dist/img/logo.png')}}" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">QR ACCESS</span>
+            <span class="brand-text font-weight-light">QRLink Portal</span>
         </a>
 
         <!-- Sidebar -->

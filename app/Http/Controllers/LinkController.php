@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 
 class LinkController extends Controller
 {
-    public function redirect($code){
+    public function index()
+    {
+        return view('index');
+    }
+
+    public function redirect($code)
+    {
         $checkCode = (new LinkRepository())->get([
             'new_url' => $code
         ], false)->first();

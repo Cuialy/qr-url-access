@@ -214,6 +214,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'GeneralHelper' => \App\Helpers\GeneralHelper::class,
     ])->toArray(),
 
 ];

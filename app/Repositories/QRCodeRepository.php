@@ -26,16 +26,16 @@ class QRCodeRepository
     public function createQRCode($data): string
     {
         try {
-            if (filter_var($data, FILTER_VALIDATE_URL)) {
+            if (filter_var($data, FILTER_VALIDATE_URL) || filter_var($data, FILTER_VALIDATE_EMAIL) || is_numeric($data)) {
+                if (filter_var($data, FILTER_VALIDATE_EMAIL)) {
+                    $data = 'mailto:' . $data;
+                } elseif (is_numeric($data)) {
+                    $data = 'tel:' . $data;
+                }
                 $data = route('redirect', (new LinkRepository())->store([
                     'old_url' => $data,
                 ])->new_url);
-            } elseif (filter_var($data, FILTER_VALIDATE_EMAIL)) {
-                $data = 'mailto:' . $data;
-            } elseif (is_numeric($data)) {
-                $data = 'tel:' . $data;
             }
-
             $path = 'app/public/qr-codes';
             $hashed_id = md5($data . time());
             if (!file_exists(storage_path($path))) {

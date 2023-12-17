@@ -2,19 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('', function (){return redirect()->route('web.link');})->name('index');
+Route::get('url-shorter', [\App\Http\Controllers\LinkController::class,'index'])->name('web.link');
+Route::get('qr-code-generator', [\App\Http\Controllers\QRCodeController::class,'index'])->name('web.qr-code');
+Route::get('about-project', [\App\Http\Controllers\HomeController::class,'aboutProject'])->name('web.about-project');
+Route::get('about-us', [\App\Http\Controllers\HomeController::class,'aboutUs'])->name('web.about-us');
 Route::get('q/{code}', [\App\Http\Controllers\LinkController::class,'redirect'])->name('redirect');

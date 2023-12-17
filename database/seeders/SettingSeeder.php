@@ -39,5 +39,17 @@ class SettingSeeder extends Seeder
                 'value' => 'Cuialy Software',
             ]);
         }
+        if (!$settingRepository->get(['key' => 'asli_link'],false)->first()) {
+            $settingRepository->store([
+                'key' => 'asli_link',
+                'value' => 'https://www.linkedin.com/in/asl%C4%B1hanikiel/',
+            ]);
+        }
+        if (!$settingRepository->get(['key' => 'umut_link'],false)->first()) {
+            $settingRepository->store([
+                'key' => 'umut_link',
+                'value' => 'https://iamumut.com',
+            ]);
+        }
     }
 }
