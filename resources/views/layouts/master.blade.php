@@ -3,14 +3,32 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Top Navigation</title>
-
+    <title>@stack('page', 'Home') | {{ \App\Helpers\GeneralHelper::getSetting('site_name') }}</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ \App\Helpers\GeneralHelper::getSetting('site_desc') }}">
+    <meta property="og:locale" content="en_EN" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta property="og:site_name" content="{{ \App\Helpers\GeneralHelper::getSetting('site_name') }}" />
+    <meta property="og:type" content="website" />
+    <meta name="author" content="Cuialy Software">
+    <meta name="publisher" content="Cuialy Software">
+    <meta name="google-site-verification" content="{{ \App\Helpers\GeneralHelper::getSetting('google_code') }}" />
+    <meta name="copyright" content="Copyright © {{ date('Y') }}, Cuaily Software" />
+    <meta property="canonical" href="{{ url()->current() }}" type="text/html" />
+    <meta property="og:title" content="@stack('page', 'Home') | {{ \App\Helpers\GeneralHelper::getSetting('site_name') }}" />
+    <meta property="og:description" content="{{ \App\Helpers\GeneralHelper::getSetting('site_desc') }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <base href="/">
+    <link rel="icon" href="{{ asset('dist/img/logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('main.js') }}"></script>
+    {!! \App\Helpers\GeneralHelper::getSetting('header_code') !!}
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
