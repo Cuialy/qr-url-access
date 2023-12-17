@@ -21,6 +21,10 @@ function showAlert(data){
     });
 }
 
+function closeModal(){
+    swal.close();
+}
+
 function showLoader(title, text, icon){
     swal({
         title: title ?? 'Please wait...',

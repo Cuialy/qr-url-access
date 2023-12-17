@@ -23,10 +23,10 @@ class QRCodeRepository
         return $paginate ? $links->paginate(10) : $links->get();
     }
 
-    public function createQRCode($data): string
+    public function createQRCode($data, $checkFilter = true): string
     {
         try {
-            if (filter_var($data, FILTER_VALIDATE_URL) || filter_var($data, FILTER_VALIDATE_EMAIL) || is_numeric($data)) {
+            if ($checkFilter && (filter_var($data, FILTER_VALIDATE_URL) || filter_var($data, FILTER_VALIDATE_EMAIL) || is_numeric($data))) {
                 if (filter_var($data, FILTER_VALIDATE_EMAIL)) {
                     $data = 'mailto:' . $data;
                 } elseif (is_numeric($data)) {
