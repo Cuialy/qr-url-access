@@ -30,7 +30,12 @@ class QRCodeRepository
                 $data = route('redirect', (new LinkRepository())->store([
                     'old_url' => $data,
                 ])->new_url);
+            } elseif (filter_var($data, FILTER_VALIDATE_EMAIL)) {
+                $data = 'mailto:' . $data;
+            } elseif (is_numeric($data)) {
+                $data = 'tel:' . $data;
             }
+
             $path = 'app/public/qr-codes';
             $hashed_id = md5($data . time());
             if (!file_exists(storage_path($path))) {
