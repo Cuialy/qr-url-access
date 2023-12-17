@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->prefix('admin')
+                ->prefix('cuialy-panel')
                 ->group(base_path('routes/admin.php'));
 
             Route::middleware('web')
