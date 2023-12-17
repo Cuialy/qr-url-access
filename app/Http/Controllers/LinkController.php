@@ -46,10 +46,11 @@ class LinkController extends Controller
             $shortLink = (new LinkRepository())->store([
                 'old_url' => $lastUrl
             ]);
-            $lastUrl = $shortLink->new_url;
+            $qrCodeUrl = route('redirect', $shortLink->new_url);
+        }else{
+            $qrCodeUrl = $lastUrl;
         }
 
-        $qrCodeUrl = route('redirect', $lastUrl);
 
         $qrCodeRepository = new QRCodeRepository();
         $qrCode = $qrCodeRepository->createQRCode($qrCodeUrl, false);
@@ -68,7 +69,7 @@ class LinkController extends Controller
             'status' => 'success',
             'data' => [
                 'qr_code' => $qrCode,
-                'short_link' => $qrCodeUrl,
+                'short_link' => $isOutUrl ? $qrCodeUrl : $lastUrl,
             ]
         ]);
     }
