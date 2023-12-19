@@ -30,7 +30,7 @@
                                     @foreach($links as $link)
                                         <tr class="odd">
                                             <td class="dtr-control sorting_1" tabindex="0">#{{$link->id}}</td>
-                                            <td>{{$link->old_url}}</td>
+                                            <td>{{ substr($link->old_url,0,50).'...' }}</td>
                                             <td>{{$link->new_url}}</td>
                                             <td>{{$link->created_at}}</td>
                                             <td>

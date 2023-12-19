@@ -14,8 +14,18 @@ class SaveRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'old_url' => 'required|active_url',
+        $rules = [
+            'old_url' => 'required|url',
         ];
+
+        if ($this->has('old_url')) {
+            $data = $this->all();
+            if (!preg_match("~^(?:f|ht)tps?://~i", $data['old_url'])) {
+                $data['old_url'] = 'http://' . $data['old_url'];
+                $this->merge(['old_url' => $data['old_url']]);
+            }
+            $rules['old_url'] = 'required|url';
+        }
+        return $rules;
     }
 }

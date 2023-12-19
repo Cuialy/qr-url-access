@@ -34,8 +34,7 @@
             <br><br>
             Moreover, Cuialy is not just a business; it's a movement towards a more connected and efficient digital world. By prioritizing the needs of the community and focusing on open-source development, <a target="_blank" href="{{ \App\Helpers\GeneralHelper::getSetting('asli_link') }}">Aslıhan</a> and <a target="_blank" href="{{ \App\Helpers\GeneralHelper::getSetting('umut_link') }}">Umut</a> are not only contributing to the tech landscape but are also empowering users to take part in the evolution of digital tools.
             <br><br>
-            In conclusion, Cuialy, under the visionary leadership of <a target="_blank" href="{{ \App\Helpers\GeneralHelper::getSetting('asli_link') }}">Aslıhan İkiel</a> and <a target="_blank" href="{{ \App\Helpers\GeneralHelper::getSetting('umut_link') }}">Umut Can Arda</a>, is poised to revolutionize
-            <br><br>
+
             the way we interact with technology. Their mission is clear: to develop open-source software that simplifies and enhances user experience. By focusing on accessibility and ease of use, Cuialy is addressing a crucial need in today's fast-paced digital environment.
             <br><br>
             Their commitment to open-source solutions is particularly noteworthy. This approach not only fosters a community of collaboration and innovation but also ensures that their tools are continually refined and adapted to meet the changing needs of users. It's a model that encourages participation and feedback from a broad user base, leading to more robust and user-friendly software.
