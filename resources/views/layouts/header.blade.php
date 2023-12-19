@@ -1,4 +1,9 @@
-<nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+<style>
+    .container a{
+        color: #27374D;
+    }
+</style>
+<nav class="main-header navbar navbar-expand-md"  style="background-color: #F3F3F3">
     <div class="container">
         <a href="{{ route('index') }}" class="navbar-brand">
             <span class="brand-text font-weight-light">QRLink Portal</span>
@@ -18,15 +23,7 @@
                         <li><a href="{{ route('web.about-us') }}" class="dropdown-item @if(request()->routeIs('web.about-us')) active @endif">About Us (Cuialy) </a></li>
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-submenu dropdown-hover">
-                            <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Developers</a>
-                            <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                <li>
-                                    <a tabindex="-1" target="_blank" href="{{ \App\Helpers\GeneralHelper::getSetting('umut_link') }}" class="dropdown-item">Umut Can Arda</a>
-                                </li>
-                                <li>
-                                    <a tabindex="-1" target="_blank" href="{{ \App\Helpers\GeneralHelper::getSetting('asli_link') }}" class="dropdown-item">Aslıhan İkiel</a>
-                                </li>
-                            </ul>
+
                         </li>
                     </ul>
                 </li>

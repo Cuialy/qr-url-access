@@ -2,10 +2,7 @@
 @section('containerHeader')
     <div class="content-header">
         <div class="container">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Shorter URL</h1>
-                </div>
+            <div class="row">
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right"></ol>
                 </div>
@@ -14,12 +11,21 @@
     </div>
 @endsection
 @section('content')
+    <style>
+        .nav-pills .nav-item .nav-link.active {
+            background-color: #394867;
+            color: #fff;
+        }
+        .nav-pills .nav-item .nav-link:hover {
+            color: #000;
+        }
+    </style>
     <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex p-0">
-                    <h3 class="card-title p-3">Options:</h3>
-                    <ul class="nav nav-pills ml-auto p-2">
+        <div class="col-12 mt-4">
+            <div class="card" style="background-color: #EEEEEE;">
+                <div class="card-header d-flex justify-content-center p-0">
+                    <h3 class="card-title p-3"></h3>
+                    <ul class="nav nav-pills mx-auto p-2">
                         <li class="nav-item"><a onclick="showTab('url');" class="nav-link active" href="#url" data-toggle="tab">URL</a></li>
                         <li class="nav-item"><a onclick="showTab('phone');" class="nav-link" href="#phone" data-toggle="tab">PHONE</a></li>
                         <li class="nav-item"><a onclick="showTab('email');" class="nav-link" href="#email" data-toggle="tab">EMAIL</a></li>
@@ -33,10 +39,10 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="row">
-                            <div class="col-12 col-md-7">
+                            <div class="col-12 col-md-7 mx-auto">
                                 <div style="display: none" class="tab-pane" id="url">
                                     <div class="form-group">
-                                        <label for="input_url">Your URL</label>
+                                    <label for="input_url">Your URL</label>
                                         <input type="text" class="form-control" name="url[url]"
                                                placeholder="https://qrlinkportal.com">
                                     </div>
@@ -345,7 +351,7 @@
                                             <div class="qr-image-show">
                                                 <img id="qr_image" src="{{ asset('dist/img/default-qr.svg') }}" alt="default-qr">
                                             </div>
-                                            <button class="btn btn-dark disabled" id="qr_button"  style="width: 100%; margin-top: 10px;">Download QR</button>
+                                            <button class="btn btn-success disabled" id="qr_button"  style="width: 100%; margin-top: 10px;">Download QR</button>
                                         </div>
                                     </div>
                                     <br>
@@ -362,7 +368,7 @@
                         <div class="form-group">
                             <br>
                             <button style="width: 100%" type="submit" onclick="generateShortURL()"
-                                    class="btn btn-primary">Generate Short URL
+                                    class="btn btn-dark">Generate Short URL
                             </button>
                         </div>
                     </div>
