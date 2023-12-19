@@ -82,7 +82,7 @@ END:VCARD';
             'status' => 'success',
             'data' => [
                 'qr_code' => $qrCode,
-                'short_link' => $isOurUrl ? $qrCodeUrl : $lastUrl,
+                'short_link' => $qrCodeUrl,
                 'is_our_url' => $isOurUrl ? 1 : 0,
             ]
         ]);
