@@ -1,30 +1,21 @@
 @extends('layouts.master')
 @section('containerHeader')
-    <div class="content-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right"></ol>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 @section('content')
     <style>
         .nav-pills .nav-item .nav-link.active {
-            background-color: #394867;
-            color: #fff;
+            background-color: #9BA4B4;
+            color: white;
         }
-        .nav-pills .nav-item .nav-link:hover {
-            color: #000;
+        .nav-pills .nav-item .nav-link:hover{
+            background-color: #c3cad5;
         }
     </style>
     <div class="row">
-        <div class="col-12 mt-4">
-            <div class="card" style="background-color: #EEEEEE;">
+        <div class="col-12">
+            <div class="card" style="background-color: #F6F6F6;">
                 <div class="card-header d-flex justify-content-center p-0">
-                    <h3 class="card-title p-3"></h3>
+                    <h3 class="card-title"></h3>
                     <ul class="nav nav-pills mx-auto p-2">
                         <li class="nav-item"><a onclick="showTab('url');" class="nav-link active" href="#url" data-toggle="tab">URL</a></li>
                         <li class="nav-item"><a onclick="showTab('phone');" class="nav-link" href="#phone" data-toggle="tab">PHONE</a></li>
@@ -34,6 +25,7 @@
                         <li class="nav-item"><a onclick="showTab('mecard');" class="nav-link" href="#mecard" data-toggle="tab">MECARD</a></li>
                         <li class="nav-item"><a onclick="showTab('wifi');" class="nav-link" href="#wifi" data-toggle="tab">WIFI</a></li>
                         <li class="nav-item"><a onclick="showTab('whatsapp');" class="nav-link" href="#whatsapp" data-toggle="tab">WHATSAPP</a></li>
+                        <li class="nav-item"><a onclick="showTab('cv');" class="nav-link" href="#cv" data-toggle="tab">CV</a></li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -51,7 +43,7 @@
                                     <div class="form-group">
                                         <label for="input_phone">Your Phone Number</label>
                                         <input type="text" class="form-control" name="phone[phone]"
-                                               placeholder="+90 530 799...">
+                                               placeholder="0530 799...">
                                     </div>
                                 </div>
                                 <div style="display: none" class="tab-pane" id="email">
@@ -342,6 +334,17 @@
                                                placeholder="Hi, I am ...">
                                     </div>
                                 </div>
+
+                                <div style="display: none" class="tab-pane" id="cv">
+                                    <div class="form-group">
+                                        <label for="cv_file">Your CV</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="cv[file]" accept=".pdf, .jpg, .jpeg, .png">
+                                            <label class="custom-file-label" for="cv_file">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="col-12 col-md-1"></div>
                             <div class="col-12 col-md-4">
@@ -351,7 +354,7 @@
                                             <div class="qr-image-show">
                                                 <img id="qr_image" src="{{ asset('dist/img/default-qr.svg') }}" alt="default-qr">
                                             </div>
-                                            <button class="btn btn-success disabled" id="qr_button"  style="width: 100%; margin-top: 10px;">Download QR</button>
+                                            <button class="btn btn-dark disabled" id="qr_button"  style="width: 100%; margin-top: 10px;">Download QR</button>
                                         </div>
                                     </div>
                                     <br>
@@ -367,8 +370,8 @@
                         </div>
                         <div class="form-group">
                             <br>
-                            <button style="width: 100%" type="submit" onclick="generateShortURL()"
-                                    class="btn btn-dark">Generate Short URL
+                            <button style="width: 100%; background-color: #607274; color: white" type="submit" onclick="generateShortURL()"
+                                    class="btn" >Generate Short URL
                             </button>
                         </div>
                     </div>

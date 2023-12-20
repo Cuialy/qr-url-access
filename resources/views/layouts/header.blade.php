@@ -1,15 +1,38 @@
 <style>
-    .container a{
-        color: #27374D;
+    .container a {
+        color: #334257;
+        transition: background-color 0.3s ease;
+    }
+    .container a:hover {
+        color: #6c6a6a;
+    }
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .brand-text {
+        display: flex;
+        align-items: center;
+    }
+    .brand-text img {
+        max-width: 100%;
+        width: auto;
+        height: 65px;
+        margin-right: 10px;
     }
 </style>
-<nav class="main-header navbar navbar-expand-md"  style="background-color: #F3F3F3">
-    <div class="container">
+<nav class="main-header navbar navbar-expand-md" style="background-color: #D4E2D4">
+    <div class="container" style="font-size: 18px;">
         <a href="{{ route('index') }}" class="navbar-brand">
-            <span class="brand-text font-weight-light">QRLink Portal</span>
+            <span class="brand-text">
+                <img src="{{ asset('dist/img/logo.png') }}" alt="Logo">
+                QRLink Portal
+            </span>
         </a>
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
             <ul class="navbar-nav">
@@ -22,9 +45,7 @@
                         <li><a href="{{ route('web.about-project') }}" class="dropdown-item @if(request()->routeIs('web.about-project')) active @endif">About This Project</a></li>
                         <li><a href="{{ route('web.about-us') }}" class="dropdown-item @if(request()->routeIs('web.about-us')) active @endif">About Us (Cuialy) </a></li>
                         <li class="dropdown-divider"></li>
-                        <li class="dropdown-submenu dropdown-hover">
-
-                        </li>
+                        <li class="dropdown-submenu dropdown-hover"></li>
                     </ul>
                 </li>
             </ul>

@@ -37,16 +37,9 @@
        @hasSection('containerHeader')
            @yield('containerHeader')
         @else
-            <div class="content-header">
-                <div class="container">
-                    <div class="row mb-2">
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-6"><ol class="breadcrumb float-sm-right"></ol></div>
-                    </div>
-                </div>
-            </div>
+
        @endif
-        <div class="content" style="background-color: #27374D;">
+        <div class="content fixed p-4" style="background-color: #D4E2D4;">
             <div class="container">
                 @yield('content')
             </div>
