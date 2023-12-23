@@ -37,15 +37,20 @@
 
     function generateShortURL() {
         const selectedType = $('.nav-pills .active').attr('href').substring(1);
-        var formData = {};
-        $('input[name^="' + selectedType + '["][name$="]"]').each(function () {
-            const key = $(this).attr('name').replace(selectedType + '[', '').replace(']', '');
-            formData[key] = $(this).val();
-        });
-        $('select[name^="' + selectedType + '["][name$="]"]').each(function () {
-            const key = $(this).attr('name').replace(selectedType + '[', '').replace(']', '');
-            formData[key] = $(this).val();
-        });
+        let formData = {};
+        if (selectedType === 'cv') {
+           //todo: formdan gelen dosyayı ekle ve post et
+        }
+        else{
+            $('input[name^="' + selectedType + '["][name$="]"]').each(function () {
+                const key = $(this).attr('name').replace(selectedType + '[', '').replace(']', '');
+                formData[key] = $(this).val();
+            });
+            $('select[name^="' + selectedType + '["][name$="]"]').each(function () {
+                const key = $(this).attr('name').replace(selectedType + '[', '').replace(']', '');
+                formData[key] = $(this).val();
+            });
+        }
         showLoader();
         $.ajax({
             url: '{{ route('api.url-generate') }}',

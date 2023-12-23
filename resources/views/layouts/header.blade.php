@@ -1,6 +1,6 @@
 <style>
     .container a {
-        color: #334257;
+        color: #991f35;
         transition: background-color 0.3s ease;
     }
     .container a:hover {
@@ -23,12 +23,12 @@
         margin-right: 10px;
     }
 </style>
-<nav class="main-header navbar navbar-expand-md" style="background-color: #D4E2D4">
+<nav class="main-header navbar navbar-expand-md" style="background-color: #8dada9">
     <div class="container" style="font-size: 18px;">
         <a href="{{ route('index') }}" class="navbar-brand">
             <span class="brand-text">
                 <img src="{{ asset('dist/img/logo.png') }}" alt="Logo">
-                QRLink Portal
+                 <b>QRLink </b>&nbsp;<b class="" style="color: #afcfcf">PORTAL</b>
             </span>
         </a>
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

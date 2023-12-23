@@ -29,6 +29,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('main.js') }}"></script>
     {!! \App\Helpers\GeneralHelper::getSetting('header_code') !!}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -39,7 +40,7 @@
         @else
 
        @endif
-        <div class="content fixed p-4" style="background-color: #D4E2D4;">
+        <div class="content fixed p-4" style="background-color: #8dada9;">
             <div class="container">
                 @yield('content')
             </div>

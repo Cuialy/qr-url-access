@@ -6,6 +6,7 @@ use App\Http\Requests\Api\LinkGenerateRequest;
 use App\Repositories\LinkRepository;
 use App\Repositories\QRCodeRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LinkController extends Controller
 {
@@ -55,7 +56,21 @@ class LinkController extends Controller
             $lastUrl = 'https://api.whatsapp.com/send?phone=' . $data['phone'] . '&text=' . $data['message'];
             $isOurUrl = true;
         } elseif ($type == 'cv') {
-        }
+                if ($request->hasFile('cv_file')) {
+                    $cvFile = $request->file('cv_file');
+                    $cvFileName = time() . '_' . $cvFile->getClientOriginalName();
+                    if (!Storage::disk('public')->exists('cv')) {
+                        Storage::disk('public')->makeDirectory('cv');
+                    }
+                    $cvFilePath = $cvFile->storeAs('cv', $cvFileName, 'public');
+                    //todo: cv dosya yolunu link kısalt ve lasturl ile eşitle
+                    $isOurUrl = true;
+                }else{
+                    return response()->json([
+                        'message' => 'Something went wrong!'
+                    ], 500);
+                }
+            }
 
         if ($isOurUrl){
             $shortLink = (new LinkRepository())->store([

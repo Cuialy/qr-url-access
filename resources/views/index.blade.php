@@ -4,16 +4,16 @@
 @section('content')
     <style>
         .nav-pills .nav-item .nav-link.active {
-            background-color: #9BA4B4;
+            background-color: #4c5762;
             color: white;
         }
         .nav-pills .nav-item .nav-link:hover{
-            background-color: #c3cad5;
+            background-color: #7a8897;
         }
     </style>
     <div class="row">
         <div class="col-12">
-            <div class="card" style="background-color: #F6F6F6;">
+            <div class="card" style="background-color: #f5f6f7;">
                 <div class="card-header d-flex justify-content-center p-0">
                     <h3 class="card-title"></h3>
                     <ul class="nav nav-pills mx-auto p-2">
@@ -338,9 +338,9 @@
                                 <div style="display: none" class="tab-pane" id="cv">
                                     <div class="form-group">
                                         <label for="cv_file">Your CV</label>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="cv[file]" accept=".pdf, .jpg, .jpeg, .png">
-                                            <label class="custom-file-label" for="cv_file">Choose file</label>
+                                        <div class="form-group">
+                                            <input type="file" class="form-control" id="cv_file" name="cv[file]" accept=".pdf, .jpg, .jpeg, .png">
+
                                         </div>
                                     </div>
                                 </div>
@@ -354,7 +354,7 @@
                                             <div class="qr-image-show">
                                                 <img id="qr_image" src="{{ asset('dist/img/default-qr.svg') }}" alt="default-qr">
                                             </div>
-                                            <button class="btn btn-dark disabled" id="qr_button"  style="width: 100%; margin-top: 10px;">Download QR</button>
+                                            <button class="btn disabled" id="qr_button"  style="width: 100%; background-color:#991f35; color: white; margin-top: 10px;">Download QR</button>
                                         </div>
                                     </div>
                                     <br>
@@ -362,7 +362,7 @@
                                         <div class="col-12">
                                             <h4>Short URL</h4>
                                             <input class="form-control" id="link_input" disabled type="text" value="https://qrlinkportal.com/q/ABCD">
-                                            <button class="btn btn-dark" id="link_button" onclick="copyInput('link_input')" disabled style="width: 100%; margin-top: 10px;">Copy</button>
+                                            <button class="btn" id="link_button" onclick="copyInput('link_input')" disabled style=" background-color:#2e3440; color: white; width: 100%; margin-top: 10px;">Copy</button>
                                         </div>
                                     </div>
                                 </div>
@@ -370,7 +370,7 @@
                         </div>
                         <div class="form-group">
                             <br>
-                            <button style="width: 100%; background-color: #607274; color: white" type="submit" onclick="generateShortURL()"
+                            <button style="width: 100%; background-color: #8dada9; color: white" type="submit" onclick="generateShortURL()"
                                     class="btn" >Generate Short URL
                             </button>
                         </div>
@@ -385,5 +385,7 @@
                 showTab('url');
             });
         </script>
+
+
     @endpush
 @endsection
